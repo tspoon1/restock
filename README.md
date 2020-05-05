@@ -12,6 +12,9 @@ An application that aims to help users stay up to date on the prices/ availabili
 - dotenv <br />
 - os <br />
 - sendgrid <br />
+- flask
+- gunicorn
+- pytest
 
 ## Installation:
 In order to set this project up, please download this repo and write into the command line: <br />
@@ -26,8 +29,10 @@ pip install -r requirements.txt
 
 
 ## Setting up the Environment:
+```sh
 conda create -n restock-env python=3.7 # (first time only) <br />
 conda activate restock-env <br />
+```
 <br />
 
 ## Set Up
@@ -76,3 +81,4 @@ pytest
 
 
 ## Code Climate Software Check:
+TODO
