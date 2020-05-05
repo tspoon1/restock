@@ -1,9 +1,18 @@
 {% extends "layout_bootstrap.html" %}
+{% set active_page = "/" %}
 
 {% block content %}
 
-    <h2>Home</h2>
+    <p>Welcome To Our App! We hope we can help during these challenging times. </p>
+    <form action="/submit" method="post">
+        <label>email:</label>
+        <input type="text" name="email"></input>
+        <br>
+        <label>link:</label>
+        <input type="text" name="link"></input>
+        <br>
+        <button>submit</button>
 
-    <p>Welcome to my app! Feel free to either sign up or learn more about this webpage!</p>
+    </form>
 
 {% endblock %}
