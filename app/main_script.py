@@ -27,6 +27,8 @@ if __name__ == "__main__":
 
     #import statements
     from dotenv import load_dotenv
+    from sendgrid import SendGridAPIClient
+    from sendgrid.helpers.mail import Mail
 
     load_dotenv()
 
@@ -53,7 +55,7 @@ if __name__ == "__main__":
         #some quick prelimenary input validation (in order to save time of issuing a get request)
 
         #request check can be run here
-        check == True
+        check = True
         if check == True:
             url_list.append(user_url)
         else:
@@ -67,6 +69,7 @@ if __name__ == "__main__":
 
     for l in url_list:
 
+        print("TODO")
         #TO DO
         #Tim scraper thing
 
@@ -91,9 +94,7 @@ if __name__ == "__main__":
     message.template_id = SENDGRID_TEMPLATE_ID
 
     message.dynamic_template_data = {
-        "symbol": s,
-        "human_friendly_timestamp": now.strftime("%d-%m-%Y %I:%M %p"),
-        "movement": movement_str
+        #TBD
         }# or construct this dictionary dynamically based on the results of some other process :-D
 
     try:

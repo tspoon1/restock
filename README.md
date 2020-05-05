@@ -61,3 +61,15 @@ For information on how to obtain a Sendgrid API key and tempate (it's very easy 
 ## Usage:
 Run the recommendation script: <br />
 - python app/main_script.py  <br />
+
+## User Instructions:
+
+TODO
+
+## Testing
+
+Run the test(s):
+
+```sh
+pytest
+```

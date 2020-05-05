@@ -3,3 +3,5 @@ gspread
 oauth2client
 bs4
 selenium
+pytest
+sendgrid==6.0.5
