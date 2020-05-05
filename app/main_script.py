@@ -1,9 +1,34 @@
 #main_script.py
 
 
+#import certain modules/ packages
+import requests
+import os
+import csv 
+
+
+#error message printing function
+def print_input_err_message():
+    """
+        This function prints an error message and then exits. It occurs whenever there is input validation errors or HTTP request errors.
+
+        @param: none.
+
+    """
+
+    print("")
+    print("OOPS, the link you entered does not work; please input links in the following format: https://amazon...")
+    print("Please try run the program again. Thank you!")
+    print("")
+    exit()
+
+
 if __name__ == "__main__":
 
     #import statements
+    from dotenv import load_dotenv
+
+    load_dotenv()
 
     #PART 1: Program intro and user input collection
     print("")
@@ -30,9 +55,9 @@ if __name__ == "__main__":
         #request check can be run here
         check == True
         if check == True:
-            url_list.append(url)
+            url_list.append(user_url)
         else:
-            #print ERROR
+            print_input_err_message()
 
     #remove the DONE
     url_list.pop()
