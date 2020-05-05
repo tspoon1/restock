@@ -73,3 +73,6 @@ Run the test(s):
 ```sh
 pytest
 ```
+
+
+## Code Climate Software Check:
