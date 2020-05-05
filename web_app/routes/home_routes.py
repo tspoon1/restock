@@ -7,19 +7,16 @@ home_routes = Blueprint("home_routes", __name__)
 @home_routes.route("/")
 def index():
     print("VISITED THE HOME PAGE...")
-    #return "Welcome Home (TODO)"
     return render_template("home.html")
 
 @home_routes.route("/about")
 def about():
     print("VISITED THE ABOUT PAGE...")
-    #return "About Me (TODO)"
     return render_template("about.html")
 
 @home_routes.route("/users/new")
 def register():
     print("VISITED THE NEW USER REGISTRATION PAGE...")
-    #return "Sign Up for our Product! (TODO)"
     return render_template("registration_form.html")
 
 @home_routes.route("/users/create", methods=["POST"])
