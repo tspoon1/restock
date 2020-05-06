@@ -45,6 +45,12 @@ def initSheet():
     return sheet
 
 def addNewRow(row):
+    """
+        This function adds a new row in the Google sheet in order for new customer data entry.
+
+        @param: given row data (e.g. email and link)
+
+    """
     sheet.insert_row(row, 2)
 
 
