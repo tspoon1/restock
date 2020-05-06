@@ -61,21 +61,12 @@ For information on how to obtain a Sendgrid API key and tempate (it's very easy 
 - https://github.com/prof-rossetti/intro-to-python/blob/master/exercises/emails-with-templates/send_email.py
 
 ## Deploying the local Flask version to online server (powered by Heroku)
-After demonstrating the ability to successfully run the web app locally, deploy the web service by uploading the source code onto a remote server:
-
-```sh
-git push heroku master
-```
-If you are unfamiliar with the code above, and/ or you have never used Heroku before, click the link below for a comprehensive guide (from Professor Rossetti) on Heroku, setting up an account, and getting it all running:
+If you are unfamiliar with or you have never used Heroku before, click the link below for a comprehensive guide (from Professor Rossetti) on Heroku, setting up an account, and getting it all running:
 https://github.com/prof-rossetti/intro-to-python/blob/master/exercises/web-service/deploying.md
 
-After entering the command line code above, you'll need to create a special file called the "Procfile" in the root directory. This file is key because it essentially coordiantes with the Heroku server on which command to invoke to run the app:
+After creating a heroku app and configuring your env-variables wither through a CLI or the heroku website as outlined above, you'll need to utilize the special file called the "Procfile" in the root directory. This file is key because it essentially coordiantes with the Heroku server on which command to invoke to run the app.
 
-```sh
-web: gunicorn "web_app:create_app()"
-```
-
-Save the "Procfile" and make a commit before re-attempting to deploy your app to the server.
+Make a commit to the heroku app and utilize the already existing Procfile to launch the application.
 
 ```sh
 git push heroku master
@@ -87,9 +78,29 @@ View the server logs and troubleshoot as necessary until you're able to see the 
 heroku logs --tail
 ```
 
-## Usage:
-Run the recommendation script: <br />
-- python app/main_script.py  <br />
+## Google Sheet Setup:
+After you can see your version of the Restock.io app running perfectly, you are almost there! Once you have done this, all you have to do is set up your google sheet.
+
+You will need to utilize the gspread, Google Sheets API, in order to get a backend up and running. If you have never done this, below are a few awesome references to get going:
+- https://github.com/prof-rossetti/intro-to-python/blob/master/notes/python/packages/gspread.md
+- https://github.com/googleapis/google-api-python-client
+- https://developers.google.com/api-client-library/python/
+- https://developers.google.com/sheets/api/guides/authorizing
+
+### Sheet Basics
+Ensure that your client_secret.json is in your root directory, and you have created a sheet that has the following contents in the following cells:
+```
+A1 = 'email'
+B1 = 'url'
+```
+
+## Testing
+After doing all of the above, your front end should be able handle form inputs and store them appropriately in the google sheet you have made. If not, this may be a good time to utilize the test suit we have written for each one of our tests. Perform them by typing the following when in the root directory:
+```
+pytest
+```
+
+
 
 ## User Instructions:
 
