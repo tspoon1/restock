@@ -31,7 +31,7 @@ def isInStock(product_url, chromeDriverPath):
     options.add_argument('--incognito')
     options.add_argument('--headless')
     options.add_argument("--log-level=3")
-    driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=options)
+    driver = webdriver.Chrome(chromeDriverPath, options=options)
 
     driver.get(product_url)
 
