@@ -15,6 +15,7 @@ def handleSubmit():
     print("FORM DATA:", dict(request.form))
     submission = dict(request.form)
     row = [submission['email'], submission['link']]
+    initSheet()
     addNewRow(row)
     return redirect("/")
 
