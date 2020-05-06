@@ -12,7 +12,6 @@ from dotenv import load_dotenv
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from datetime import datetime
-load_dotenv()
 
 def isInStock(product_url):
 
@@ -27,11 +26,11 @@ def isInStock(product_url):
         @return: boolean (based on whether it is in stock or not)
 
     """
-
+    load_dotenv()
     inStock = False
 
     #  IN "HEADLESS MODE  "
-    CHROMEDRIVER_PATH = "c:/Users/timpa/Documents/GitHub/restock/chromedriver.exe"
+    CHROMEDRIVER_PATH = os.environ.get("CHROMEDRIVER_PATH")
     options = webdriver.ChromeOptions()
     #options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     options.add_argument('--incognito')
