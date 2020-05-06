@@ -9,5 +9,15 @@ client = gspread.authorize(creds)
 
 sheet = client.open("Restock").sheet1
 
-stuff = sheet.get_all_records()
-print(stuff)
+#stuff = sheet.get_all_records()
+#print(stuff)
+
+emailList = sheet.col_values(1)[1:]
+urlList = sheet.col_values(2)[1:]
+
+print(emailList)
+print(urlList)
+
+
+
+
