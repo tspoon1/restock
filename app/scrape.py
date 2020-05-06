@@ -8,6 +8,9 @@ import time
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+#import other key functions
+from app.email_service import send_email
+
 def isInStock(product_url, chromeDriverPath):
 
     inStock = False
@@ -122,3 +125,18 @@ if __name__ == "__main__":
 
         print("Thanks for adding your item to Restock!\n")
 
+
+    #PART XXX: emailing the user about product info
+
+    #TO DO : CONNECT EMAIL HERE
+    
+
+
+    #concluding statement to thank the client for using the service
+    print("")
+    print("")
+    print("Thank you for using Restock.io! We hope you got the information you were looking for \n")
+    print("We look forward to keeping you updated on the products that you care about!\n")
+    print("If you think there is a way we can improve our service, contact us at customerrelations@restock.io")
+    print("")
+    
