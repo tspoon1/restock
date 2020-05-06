@@ -121,7 +121,6 @@ def send_email(customer_address, product_url, availability):
         inputs below and uses a custom HTML template to formulate the email. Note that API KEY and the sending email address are 
         kept undisclosed in the .env file
 
-        @param: customer_name (a string that contains the customer's name)
         @param: customer_address (a string that contains the customer's email)
         @param: product_url (the link of the product that the customer gave, in string format)
         @param: availability (a string that informs the customer of if the product is available or not)
@@ -136,7 +135,7 @@ def send_email(customer_address, product_url, availability):
     now = datetime.now()
     date_and_time = now.strftime("%d-%m-%Y %I:%M %p")
     CUST_ADDRESS = customer_address
-    SUBJECT = 'Restock.io: Updates on the availability and price of your product(s)'
+    SUBJECT = 'Restock.io: Your item is in stock!'
 
 
     client = SendGridAPIClient(SENDGRID_API_KEY)
@@ -154,7 +153,7 @@ def send_email(customer_address, product_url, availability):
 
     <p>Below, we have listed the product you wanted to watch: {product_url}</p>
 
-    <p>Your product is currently {availability}.
+    <p>Your product is currently {availability}. Go grab it!
     <p>Thank you for trusting us as your shopping helper! Please give us a shout by sharing this service with your friends/ family: we are here to help!</p>
 
 
