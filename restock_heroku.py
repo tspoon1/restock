@@ -26,6 +26,8 @@ def isInStock(product_url):
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=options)
 
     driver.get(product_url)
+    print(product_url)
+    print("we grabbed the url")
 
     try:
         price = driver.find_element_by_id("priceblock_ourprice").text
@@ -107,6 +109,7 @@ if __name__ == "__main__":
 
     for email, url in zip(emailList, urlList):
         if isInStock(url):
+            print("we are supposed to be emailing rn")
             notifyUser(email, url)
             sheet.delete_row(rowNumber)
         rowNumber += 1
