@@ -140,10 +140,6 @@ if __name__ == "__main__":
 
     url = "https://www.amazon.com/Nintendo-Switch-Neon-Blue-Joy%E2%80%91/dp/B07VGRJDFY/ref=sr_1_3?crid=IY3K5B823UOZ&dchild=1&keywords=nintendo+switch&qid=1588716182&sprefix=nintend%2Caps%2C159&sr=8-3"
     
-    newRow = [email, url]
-
-
-    addNewRow(newRow)
 
 
     #print(isInStock(url, CHROMEDRIVER_PATH))
