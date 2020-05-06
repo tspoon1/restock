@@ -74,7 +74,6 @@ if __name__ == "__main__":
     load_dotenv()
 
     #defining key variables
-    now = datetime.now()
     CHROMEDRIVER_PATH = "c:/Users/timpa/Documents/GitHub/restock/chromedriver.exe"
 
     #starting a sheet
@@ -129,7 +128,7 @@ if __name__ == "__main__":
     #PART XXX: emailing the user about product info
 
     #TO DO : CONNECT EMAIL HERE
-    
+
 
 
     #concluding statement to thank the client for using the service
