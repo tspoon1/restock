@@ -1,18 +1,5 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-
-from dotenv import load_dotenv
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
-import os
-from datetime import datetime
-
+#app/email_runner.py
 from restock import isInStock, initSheet, send_email
-
-load_dotenv()
 
 if __name__ == "__main__":
 
