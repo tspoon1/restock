@@ -1,7 +1,7 @@
 # web_app/routes/home_routes.py
 
 from flask import Blueprint, render_template, flash, redirect, request
-from app.scrape import addNewRow
+from scrape import addNewRow, initSheet
 
 home_routes = Blueprint("home_routes", __name__)
 
@@ -15,6 +15,7 @@ def handleSubmit():
     print("FORM DATA:", dict(request.form))
     submission = dict(request.form)
     row = [submission['email'], submission['link']]
+    initSheet()
     addNewRow(row)
     return redirect("/")
 
