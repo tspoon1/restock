@@ -12,28 +12,41 @@ load_dotenv()
 
 #get variables from .env
 SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
-SENDGRID_TEMPLATE_ID = os.environ.get("SENDGRID_TEMPLATE_ID")
 MY_ADDRESS = os.environ.get("EMAIL")
 SUBJECT = 'Restock.io: Updates on the availability and price of your product(s)'
 
-def send_email(customer_name, product, availability):
+def send_email(customer_name, customer_address, product, availability):
 
     now = datetime.now()
+    date_and_time = now.strftime("%d-%m-%Y %I:%M %p")
+    CUST_ADDRESS = customer_address
+
 
     client = SendGridAPIClient(SENDGRID_API_KEY)
     print("CLIENT:", type(client))
 
-    message = Mail(from_email=MY_ADDRESS, to_emails=CUST_ADDRESS, subject=SUBJECT)
+    html = f"""
+
+    <img src="https://media1.s-nbcnews.com/j/newscms/2018_29/2473831/180622-amazon-mc-1124_36a8ba8a051fde1141e943390ac804f9.fit-760w.JPG">
+
+    <h4>Dear {customer_name},</h4>
+    <p>Date: {date_and_time}</p>
+
+
+    <p>We hope this email finds you well. You are receiving this notification as part of your product monitoring subscription with Restock.io.</p>
+
+    <p>Below, we have listed the product you wanted to watch</p>
+
+    <p> {product} is currently {availability}
+    <p>Thank you for trusting us as your shopping helper! Please give us a shout by sharing this service with your friends/ family: we are here to help.</p>
+
+
+    <h4>Best, </h4>
+    <h4>Team Restock </h4>
+    """
+
+    message = Mail(from_email=MY_ADDRESS, to_emails=CUST_ADDRESS, subject=SUBJECT, html_content=html)
     print("MESSAGE:", type(message))
-
-    message.template_id = SENDGRID_TEMPLATE_ID
-
-    message.dynamic_template_data = {
-        "name": customer_name,
-        "human_friendly_timestamp": now.strftime("%d-%m-%Y %I:%M %p"),
-        "product": product,
-        "availability": availability
-        }
 
     try:
         response = client.send(message)
