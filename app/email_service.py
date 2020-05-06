@@ -10,6 +10,17 @@ from datetime import datetime
 
 def send_email(customer_name, customer_address, product, availability):
 
+    """
+        This function makes use of the SendGrid API to formulate an email that can be sent to the customer, notifying them of the 
+        current availability of their product. The instructions to sendgrid installation can be found in the README. It takes the four
+        inputs below and uses a custom HTML template to formulate the email. Note that API KEY and the sending email address are 
+        kept undisclosed in the .env file
+
+        @param: customer_name (a string that contains the customer's name), customer_address (a string that contains the customer's emai)
+                product (the link of the product that the customer gave, in string format), availability, a string that informs the customer
+                of if the product is available or not
+
+    """
     load_dotenv()
     
     #get variables from .env
@@ -35,10 +46,10 @@ def send_email(customer_name, customer_address, product, availability):
 
     <p>We hope this email finds you well. You are receiving this notification as part of your product monitoring subscription with Restock.io.</p>
 
-    <p>Below, we have listed the product you wanted to watch</p>
+    <p>Below, we have listed the product you wanted to watch:</p>
 
-    <p> {product} is currently {availability}
-    <p>Thank you for trusting us as your shopping helper! Please give us a shout by sharing this service with your friends/ family: we are here to help.</p>
+    <p> {product} is currently {availability}.
+    <p>Thank you for trusting us as your shopping helper! Please give us a shout by sharing this service with your friends/ family: we are here to help!</p>
 
 
     <h4>Best, </h4>

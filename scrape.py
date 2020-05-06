@@ -4,14 +4,21 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 #import other key functions
 from app.email_service import send_email
 
+
 def isInStock(product_url, chromeDriverPath):
+
+    """
+        Tim EXPLAIN
+
+        @param: the product URL in string format an the path of the Chrome Driver, which is in string format too
+
+    """
 
     inStock = False
 
@@ -26,6 +33,8 @@ def isInStock(product_url, chromeDriverPath):
     driver.get(product_url)
 
     try:
+        #scrape the HTML code and check for the price block. If there is a $ in the block, a price is given and the product 
+        # is available; if not, its not there
         price = driver.find_element_by_id("priceblock_ourprice").text
         if "$" in price:
             inStock = True
@@ -34,9 +43,18 @@ def isInStock(product_url, chromeDriverPath):
 
     driver.quit()
 
+    #return the boolean that will be used to alert the client
     return inStock
 
 def initSheet():
+    """
+        This function makes use of the Google Sheets API to provide access to Restock's customer database google sheet.
+        It makes use of Google Sheet's integration to bring in access to a local variable, which it then serves as an access window
+        for data transfer. It returns the access to this sheet
+
+        @param: none
+
+    """
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     creds = ServiceAccountCredentials.from_json_keyfile_name("client_secret.json", scope)
     client = gspread.authorize(creds)
@@ -46,9 +64,10 @@ def initSheet():
 
 def addNewRow(row):
     """
-        This function adds a new row in the Google sheet in order for new customer data entry.
+        This function adds a new row in the Google sheet in order for new customer data entry. Note that it calls the initSheet()
+        function within the function.
 
-        @param: given row data (e.g. email and link)
+        @param: given row data, which is a list item containing the email and link
 
     """
     sheet = initSheet()
@@ -58,7 +77,7 @@ def addNewRow(row):
 #error message printing function
 def print_input_err_message():
     """
-        This function prints an error message and then exits. It occurs whenever there is input validation errors or HTTP request errors.
+        This function prints an error message and then exits. It occurs whenever there is input validation errors.
 
         @param: none.
 
@@ -128,7 +147,7 @@ if __name__ == "__main__":
         email = input("-->")
 
         while ("@" not in email):
-            print("Whoops, please enter a valid email.")
+            print("Whoops, please enter a valid email:")
             email = input("-->")
 
         print("Adding your request to our database...")

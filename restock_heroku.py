@@ -74,10 +74,10 @@ def notifyUser(email, url):
 
     <p>We hope this email finds you well. You are receiving this notification as part of your product monitoring subscription with Restock.io.</p>
 
-    <p>Below, we have listed the product you wanted to watch</p>
+    <p>Below, we have listed the product you wanted to watch:</p>
 
     <p>Your product is currently available! Make sure you revisit your url before it runs out: {url}</p>
-    <p>Thank you for trusting us as your shopping helper! Please give us a shout by sharing this service with your friends/ family: we are here to help.</p>
+    <p>Thank you for trusting us as your shopping helper! Please give us a shout by sharing this service with your friends/ family: we are here to help!</p>
 
 
     <h4>Best, </h4>
