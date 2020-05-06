@@ -100,6 +100,14 @@ After doing all of the above, your front end should be able handle form inputs a
 pytest
 ```
 
+## To Restock, or not to Restock
+Upon completion of everything above, you are good to go! Just make sure to keep an eye out for our v3.0 to release, where the google sheet will be automatically run-through and checked regularly by a herkou scheduled script. But for now, just type the following into your CLI a couple times a day to keep your own Restock users happy!
+```
+python app/email_runner.py
+```
+
+## Goodluck and thank you for using Restock.io!
+#### The Restock team <3
 
 
 ## User Instructions:
