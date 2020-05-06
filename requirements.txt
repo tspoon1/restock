@@ -4,6 +4,7 @@ oauth2client
 bs4
 selenium
 sendgrid==6.0.5
+dotenv
 
 Flask
 gunicorn
