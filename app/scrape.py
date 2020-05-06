@@ -89,6 +89,20 @@ def print_input_err_message():
     print("")
     exit()
 
+def is_valid(url):
+    """
+        This function validates the url. Returns True is valid and False if not
+
+        @param: url, the string variable that has the link given by the customer
+
+    """
+    #quick validation
+    if "www.amazon.com" and "https://" in url:
+        return True
+    else:
+        return False
+
+
 
 if __name__ == "__main__":
 
@@ -120,15 +134,16 @@ if __name__ == "__main__":
     print("")
     url = input("Please input the amazon URL for the product that you would which to keep tabs on: ")
 
-    #quick validation
-    if "amazon" in url:
-        print("Great, we're looking into it right now... \n")
+    #run the function to check validity
+    validity = is_valid(url)
+    if validity == True:
+        print("Adding your request to our database...")
     else:
         print_input_err_message()
 
 
     url = "https://www.amazon.com/Nintendo-Switch-Neon-Blue-Joy%E2%80%91/dp/B07VGRJDFY/ref=sr_1_3?crid=IY3K5B823UOZ&dchild=1&keywords=nintendo+switch&qid=1588716182&sprefix=nintend%2Caps%2C159&sr=8-3"
-    print("Adding your request to our database...")
+    
     newRow = [email, url]
 
 
