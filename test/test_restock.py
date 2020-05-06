@@ -18,5 +18,5 @@ def test_send_email():
     availability = "Available"
 
     #Looking for thar successfully sent email, which should return a 202 code in the output
-    assert "202" in send_email(email, product, availability)
+    assert send_email(email, product, availability) == "sent"
 

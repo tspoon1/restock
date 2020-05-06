@@ -169,6 +169,7 @@ def send_email(customer_address, product_url, availability):
     try:
         response = client.send(message)
         print(response.status_code)
+        return "sent"
     except Exception as e:
         print("OOPS", e)
 
