@@ -101,7 +101,8 @@ pytest
 ```
 
 ## Code Climate Software Check:
-TODO
+<a href="https://codeclimate.com/github/jsoles7/restock/maintainability"><img src="https://api.codeclimate.com/v1/badges/8b8408b02ef475d53613/maintainability" /></a>
+
 
 ## To Restock, or not to Restock
 Upon completion of everything above, you are good to go! Just make sure to keep an eye out for our v3.0 to release, where the google sheet will be automatically run-through and checked regularly by a herkou scheduled script. But for now, just type the following into your CLI a couple times a day to keep your own Restock users happy!
