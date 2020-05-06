@@ -39,6 +39,14 @@ pip install -r requirements.txt
 ```
 <br />
 
+<<<<<<< Updated upstream
+=======
+## Getting a ChromeDriver
+In order to get the reliance on selenium up and running that we need, make sure to ensure the chromedriver.exe is appropriate for the machine you are running it on. You can find a link to download these different drivers here:
+- https://chromedriver.chromium.org/downloads
+Also, be sure to update your convironment variable CHROMEDRIVER_PATH that leads to the chrome driver, as this is a temporary fix to get the project running before we have full automatic emails with heroku in which case you won't need it!
+
+>>>>>>> Stashed changes
 ## Set Up
 In addition to what was said above, make sure to configure your env to fit the required variables: <br />
 - A SENDGRID_API_KEY <br />
