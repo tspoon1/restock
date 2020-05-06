@@ -3,12 +3,15 @@
 
 {% block content %}
 
-    <p>Welcome To Our App! We hope we can help during these challenging times. Enter your email and an item's link on Amazon's website and we will send you regular updates! </p>
+    <p>Welcome To Our App! We hope we can help during these challenging times. Enter your name, email, and an item's link on Amazon's website and we will send you regular updates! </p>
     <form action="/submit" method="post">
-        <label>email:</label>
+        <label>Name:</label>
+        <input type="text" name="uName"></input>
+        <br>
+        <label>Email:</label>
         <input type="text" name="email"></input>
         <br>
-        <label>link:</label>
+        <label>Link:</label>
         <input type="text" name="link"></input>
         <br>
         <button>submit</button>
