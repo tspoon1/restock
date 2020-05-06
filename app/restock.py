@@ -109,7 +109,7 @@ def is_valid(url):
 
     """
     #quick validation
-    if "www.amazon.com" and "https://" in url:
+    if "www.amazon.com" in url and "https://" in url:
         return True
     else:
         return False
