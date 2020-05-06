@@ -138,4 +138,4 @@ pytest
 
 
 ## Code Climate Software Check:
-TODO
+<a href="https://codeclimate.com/github/jsoles7/restock/maintainability"><img src="https://api.codeclimate.com/v1/badges/8b8408b02ef475d53613/maintainability" /></a>
