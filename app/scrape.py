@@ -132,12 +132,13 @@ if __name__ == "__main__":
     #asking for user input
     print("")
     print("")
+    name = input("Please write your name: ")
     url = input("Please input the amazon URL for the product that you would which to keep tabs on: ")
 
     #run the function to check validity
     validity = is_valid(url)
     if validity == True:
-        print("Adding your request to our database...")
+        print(f"{name}, Adding your request to our database...")
     else:
         print_input_err_message()
 
@@ -169,7 +170,7 @@ if __name__ == "__main__":
         newRow = [email, url]
         addNewRow(newRow)
 
-        print("Thanks for adding your item to Restock!\n")
+        print(f"Thanks for adding your item to Restock, {name}!\n")
 
 
     #PART XXX: emailing the user about product info
@@ -186,4 +187,3 @@ if __name__ == "__main__":
     print("If you think there is a way we can improve our service, contact us at customerrelations@restock.io")
     print("")
 
-    print("Thanks for adding your item to Restock!\n")
