@@ -30,3 +30,10 @@ def test_addNewRow():
 
     sheet = initSheet()
     sheet.delete_rows(2)
+
+def test_initSheet():
+    sheet = initSheet()
+    result = ["email", "url"]
+
+    #if the sheet was initiatized correctly, the first row will be email, url
+    assert sheet.row_values(1) == result
