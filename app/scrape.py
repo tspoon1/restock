@@ -9,17 +9,23 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 #import other key functions
-from app.email_service import send_email
+from email_service import send_email
 
+import os
 from dotenv import load_dotenv
 load_dotenv()
 
 def isInStock(product_url, chromeDriverPath):
 
     """
-        Tim EXPLAIN
+        isInStock utilizes selenium to grab an amazon.com url specified by the user and
+        searched for the tag which amazon uses to specify price. If it doesn't have this tag with a
+        $ inside of it, we return false to the program calling the function.
 
         @param: the product URL in string format an the path of the Chrome Driver, which is in string format too
+        @param: the path to the chromeDriver.exe that makes selenium launch
+        
+        @return: boolean (based on whether it is in stock or not)
 
     """
 
@@ -31,7 +37,8 @@ def isInStock(product_url, chromeDriverPath):
     options.add_argument('--incognito')
     options.add_argument('--headless')
     options.add_argument("--log-level=3")
-    driver = webdriver.Chrome(chromeDriverPath, options=options)
+    options.add_argument("--disable-dev-shm-usage")
+    driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=options)
 
     driver.get(product_url)
 
@@ -76,7 +83,6 @@ def addNewRow(row):
     sheet = initSheet()
     sheet.insert_row(row, 2)
 
-
 #error message printing function
 def print_input_err_message():
     """
@@ -104,8 +110,6 @@ def is_valid(url):
         return True
     else:
         return False
-
-
 
 if __name__ == "__main__":
 

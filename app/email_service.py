@@ -8,7 +8,7 @@ from sendgrid.helpers.mail import Mail
 from datetime import datetime
 
 
-def send_email(customer_name, customer_address, product, availability):
+def send_email(customer_address, product_url, availability):
 
     """
         This function makes use of the SendGrid API to formulate an email that can be sent to the customer, notifying them of the 
@@ -40,15 +40,15 @@ def send_email(customer_name, customer_address, product, availability):
 
     <img src="https://media1.s-nbcnews.com/j/newscms/2018_29/2473831/180622-amazon-mc-1124_36a8ba8a051fde1141e943390ac804f9.fit-760w.JPG">
 
-    <h4>Dear {customer_name},</h4>
+    <h4>Dear Valued Restock Customer,</h4>
     <p>Date: {date_and_time}</p>
 
 
     <p>We hope this email finds you well. You are receiving this notification as part of your product monitoring subscription with Restock.io.</p>
 
-    <p>Below, we have listed the product you wanted to watch:</p>
+    <p>Below, we have listed the product you wanted to watch: {product_url}</p>
 
-    <p> {product} is currently {availability}.
+    <p>Your product is currently {availability}.
     <p>Thank you for trusting us as your shopping helper! Please give us a shout by sharing this service with your friends/ family: we are here to help!</p>
 
 
