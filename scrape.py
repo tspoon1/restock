@@ -71,6 +71,7 @@ if __name__ == "__main__":
     from sendgrid import SendGridAPIClient
     from sendgrid.helpers.mail import Mail
 
+
     load_dotenv()
 
     #defining key variables
@@ -101,7 +102,12 @@ if __name__ == "__main__":
 
 
     url = "https://www.amazon.com/Nintendo-Switch-Neon-Blue-Joy%E2%80%91/dp/B07VGRJDFY/ref=sr_1_3?crid=IY3K5B823UOZ&dchild=1&keywords=nintendo+switch&qid=1588716182&sprefix=nintend%2Caps%2C159&sr=8-3"
+    print("Adding your request to our database...")
+    newRow = [email, url]
+
     
+    addNewRow(newRow)
+
 
     #print(isInStock(url, CHROMEDRIVER_PATH))
     email = ""
@@ -139,3 +145,4 @@ if __name__ == "__main__":
     print("If you think there is a way we can improve our service, contact us at customerrelations@restock.io")
     print("")
     
+    print("Thanks for adding your item to Restock!\n")
