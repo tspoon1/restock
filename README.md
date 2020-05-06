@@ -1,5 +1,5 @@
-## The Project
-An application that aims to help users stay up to date on the prices/ availability of the products they are looking for. Given uncertain times such as now, where COVID-19 has forced the supply of certain key products to change in price or become unavailable, there is a high demand for the updating of key product price and availability data. Our application aims to keep users informed on what is happening with their key products in a friendly and easy manner. Say goodbye to checking Amazon 24/7 for toilet paper :)
+## Restock.io
+The application that aims to help users stay up to date on the prices/availability of the products they are looking for. Given uncertain times such as now, where COVID-19 has forced the supply of certain key products to change in price or become unavailable, there is a high demand for the updating of key product price and availability data. Our application aims to keep users informed on what is happening with their key products in a friendly and easy manner. Say goodbye to checking Amazon 24/7 for toilet paper :)
 
 
 ## Prerequisites:
@@ -8,7 +8,7 @@ An application that aims to help users stay up to date on the prices/ availabili
 - Pip
 
 ## Required Python Packages & Modules:
-- dotenv 
+- python-dotenv 
 - os 
 - datetime
 - sendgrid
@@ -16,47 +16,40 @@ An application that aims to help users stay up to date on the prices/ availabili
 - gunicorn
 - gspread
 - oauth2client
-- bs4
 - selenium
 - pytest
 
-## Installation:
-In order to set this project up, please download this repo and write into the command line: <br />
-    - git clone git@github.com:tspoon1/restock <br />
-    - cd restock/ <br />
-
-Proceed to download the following packages: <br />
-```sh
-pip install -r requirements.txt
-```
-<br />
-
-
 ## Setting up the Environment:
+Before installing the requirements to run this, please make a virtual environment for your restock programs to live in by doing the following:
 ```sh
 conda create -n restock-env python=3.7 # (first time only) <br />
 conda activate restock-env 
 ```
 <br />
 
+## Installation:
+In order to set this project up, please download this repo and write into the command line: <br />
+```
+git clone git@github.com:tspoon1/restock <br />
+cd restock/ <br />
+```
+Proceed to download the following packages: <br />
+```sh
+pip install -r requirements.txt
+```
+<br />
+
 ## Set Up
 In addition to what was said above, make sure to configure your env to fit the required variables: <br />
-- Sendgrid API KEY <br />
-- Sendgrid API TEMPLATE <br />
-- An email address to use for sending and receiving emailed alerts <br />
+- A SENDGRID_API_KEY <br />
+- An email address to use for sending and receiving emailed alerts stored in EMAIL<br />
 
 
 ### The `sendgrid` Package
 
 The `sendgrid` package provides  emailing capabilities via the [SendGrid Email Delivery Service](https://sendgrid.com/solutions/email-api/). :mailbox_with_mail: :envelope:
 
-### Installation
-
-From within a virtual environment, install `sendgrid`, if necessary:
-
-```sh
-pip install sendgrid==6.0.5
-```
+#### Installation if you do not have it already
 
 First, [sign up for a free account](https://signup.sendgrid.com/), then click the link in a confirmation email to verify your account. Then [create an API Key](https://app.sendgrid.com/settings/api_keys) with "full access" permissions.
 
@@ -68,21 +61,12 @@ For information on how to obtain a Sendgrid API key and tempate (it's very easy 
 - https://github.com/prof-rossetti/intro-to-python/blob/master/exercises/emails-with-templates/send_email.py
 
 ## Deploying the local Flask version to online server (powered by Heroku)
-After demonstrating the ability to successfully run the web app locally, deploy the web service by uploading the source code onto a remote server:
-
-```sh
-git push heroku master
-```
-If you are unfamiliar with the code above, and/ or you have never used Heroku before, click the link below for a comprehensive guide (from Professor Rossetti) on Heroku, setting up an account, and getting it all running:
+If you are unfamiliar with or you have never used Heroku before, click the link below for a comprehensive guide (from Professor Rossetti) on Heroku, setting up an account, and getting it all running:
 https://github.com/prof-rossetti/intro-to-python/blob/master/exercises/web-service/deploying.md
 
-After entering the command line code above, you'll need to create a special file called the "Procfile" in the root directory. This file is key because it essentially coordiantes with the Heroku server on which command to invoke to run the app:
+After creating a heroku app and configuring your env-variables wither through a CLI or the heroku website as outlined above, you'll need to utilize the special file called the "Procfile" in the root directory. This file is key because it essentially coordiantes with the Heroku server on which command to invoke to run the app.
 
-```sh
-web: gunicorn "web_app:create_app()"
-```
-
-Save the "Procfile" and make a commit before re-attempting to deploy your app to the server.
+Make a commit to the heroku app and utilize the already existing Procfile to launch the application.
 
 ```sh
 git push heroku master
@@ -94,48 +78,37 @@ View the server logs and troubleshoot as necessary until you're able to see the 
 heroku logs --tail
 ```
 
-## Usage:
-Run the recommendation script: <br />
-- python app/main_script.py  <br />
+## Google Sheet Setup:
+After you can see your version of the Restock.io app running perfectly, you are almost there! Once you have done this, all you have to do is set up your google sheet.
 
-## User Instructions:
+You will need to utilize the gspread, Google Sheets API, in order to get a backend up and running. If you have never done this, below are a few awesome references to get going:
+- https://github.com/prof-rossetti/intro-to-python/blob/master/notes/python/packages/gspread.md
+- https://github.com/googleapis/google-api-python-client
+- https://developers.google.com/api-client-library/python/
+- https://developers.google.com/sheets/api/guides/authorizing
 
-In terms of application usage, there are two ways in which this application can be used:
-- online web app version (powered through Heroku)
-- command line web app version (powered by Flask)
-
-### Online Version
-
-COMING SOON...
-
-Click through to where you can enter your details (Name) and then the link of the product you wish to track on Amazon.
-The program will come back with one of two respones: either the product is in stock and therefore the program will end there, or it is not in stock. If it is the latter, the application will request your email. If you wish to receive updates every once in a while, enter your email and the application will email you until the product becomes available, in which case you will then be removed from the email list.
-
-
-### Command line version
-Run the program given the instructions above and you will first see a welcoming message. Enter your name and then the link of the product you wish to track on Amazon. Just like above, the program will come back with one of two respones: either the product is in stock and therefore the program will end there, or it is not in stock. If it is the latter, the application will request your email. If you wish to receive updates every once in a while, enter your email and the application will email you until the product becomes available, in which case you will then be removed from the email list.
-
-#### Flask Instructions
-Depending on the way a Flask app is organized, the run command will differ, but based on the provided organizational structure (with the `create_app()` function in the "web_app/\_\_init__.py" file), the following command should run web application locally so you can view it in a browser at localhost:5000:
-
-```sh
-# Mac:
-FLASK_APP=web_app flask run
-
-# Windows:
-export FLASK_APP=web_app # first time, to set the env var
-flask run # subsequent times
+### Sheet Basics
+Ensure that your client_secret.json is in your root directory, and you have created a sheet that has the following contents in the following cells:
 ```
-Following this, proceed to visit localhost:5000 in the browser!
+A1 = 'email'
+B1 = 'url'
+```
 
 ## Testing
-
-Run the test(s):
-
-```sh
+After doing all of the above, your front end should be able handle form inputs and store them appropriately in the google sheet you have made. If not, this may be a good time to utilize the test suit we have written for each one of our tests. Perform them by typing the following when in the root directory:
+```
 pytest
 ```
 
-
 ## Code Climate Software Check:
 <a href="https://codeclimate.com/github/jsoles7/restock/maintainability"><img src="https://api.codeclimate.com/v1/badges/8b8408b02ef475d53613/maintainability" /></a>
+
+
+## To Restock, or not to Restock
+Upon completion of everything above, you are good to go! Just make sure to keep an eye out for our v3.0 to release, where the google sheet will be automatically run-through and checked regularly by a herkou scheduled script. But for now, just type the following into your CLI a couple times a day to keep your own Restock users happy!
+```
+python app/email_runner.py
+```
+
+## Goodluck and thank you for using Restock.io!
+#### The Restock team <3
