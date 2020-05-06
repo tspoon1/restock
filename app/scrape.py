@@ -110,7 +110,7 @@ if __name__ == "__main__":
 
 
     #defining key variables
-    CHROMEDRIVER_PATH = "c:/Users/timpa/Documents/GitHub/restock/chromedriver.exe"
+    CHROMEDRIVER_PATH = os.environ.get("CHROMEDRIVER_PATH")
 
     #starting a sheet
     sheet = initSheet()
