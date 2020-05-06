@@ -1,5 +1,5 @@
-## The Project
-An application that aims to help users stay up to date on the prices/ availability of the products they are looking for. Given uncertain times such as now, where COVID-19 has forced the supply of certain key products to change in price or become unavailable, there is a high demand for the updating of key product price and availability data. Our application aims to keep users informed on what is happening with their key products in a friendly and easy manner. Say goodbye to checking Amazon 24/7 for toilet paper :)
+## Restock.io
+The application that aims to help users stay up to date on the prices/availability of the products they are looking for. Given uncertain times such as now, where COVID-19 has forced the supply of certain key products to change in price or become unavailable, there is a high demand for the updating of key product price and availability data. Our application aims to keep users informed on what is happening with their key products in a friendly and easy manner. Say goodbye to checking Amazon 24/7 for toilet paper :)
 
 
 ## Prerequisites:
@@ -8,7 +8,7 @@ An application that aims to help users stay up to date on the prices/ availabili
 - Pip
 
 ## Required Python Packages & Modules:
-- dotenv 
+- python-dotenv 
 - os 
 - datetime
 - sendgrid
@@ -16,47 +16,40 @@ An application that aims to help users stay up to date on the prices/ availabili
 - gunicorn
 - gspread
 - oauth2client
-- bs4
 - selenium
 - pytest
 
-## Installation:
-In order to set this project up, please download this repo and write into the command line: <br />
-    - git clone git@github.com:tspoon1/restock <br />
-    - cd restock/ <br />
-
-Proceed to download the following packages: <br />
-```sh
-pip install -r requirements.txt
-```
-<br />
-
-
 ## Setting up the Environment:
+Before installing the requirements to run this, please make a virtual environment for your restock programs to live in by doing the following:
 ```sh
 conda create -n restock-env python=3.7 # (first time only) <br />
 conda activate restock-env 
 ```
 <br />
 
+## Installation:
+In order to set this project up, please download this repo and write into the command line: <br />
+```
+git clone git@github.com:tspoon1/restock <br />
+cd restock/ <br />
+```
+Proceed to download the following packages: <br />
+```sh
+pip install -r requirements.txt
+```
+<br />
+
 ## Set Up
 In addition to what was said above, make sure to configure your env to fit the required variables: <br />
-- Sendgrid API KEY <br />
-- Sendgrid API TEMPLATE <br />
-- An email address to use for sending and receiving emailed alerts <br />
+- A SENDGRID_API_KEY <br />
+- An email address to use for sending and receiving emailed alerts stored in EMAIL<br />
 
 
 ### The `sendgrid` Package
 
 The `sendgrid` package provides  emailing capabilities via the [SendGrid Email Delivery Service](https://sendgrid.com/solutions/email-api/). :mailbox_with_mail: :envelope:
 
-### Installation
-
-From within a virtual environment, install `sendgrid`, if necessary:
-
-```sh
-pip install sendgrid==6.0.5
-```
+#### Installation if you do not have it already
 
 First, [sign up for a free account](https://signup.sendgrid.com/), then click the link in a confirmation email to verify your account. Then [create an API Key](https://app.sendgrid.com/settings/api_keys) with "full access" permissions.
 
