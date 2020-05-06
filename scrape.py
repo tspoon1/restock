@@ -1,105 +1,148 @@
+#scrape.py
+
+#importing key packages/ modules
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 
-#
-# INITIALIZE THE DRIVER
-#
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
-CHROMEDRIVER_PATH = "c:/Users/timpa/Documents/GitHub/restock/chromedriver.exe" # (or wherever yours is installed)
-#chrome_driver_path = "C:\Users\timpa\Documents\geckodriver\chromedriver.exe"
+#import other key functions
+from app.email_service import send_email
 
-driver = webdriver.Chrome(CHROMEDRIVER_PATH)
+def isInStock(product_url, chromeDriverPath):
 
-# ... OR IN "HEADLESS MODE"...
-# options = webdriver.ChromeOptions()
-# options.add_argument('--incognito')
-# options.add_argument('--headless')
-# driver = webdriver.Chrome(CHROMEDRIVER_PATH, chrome_options=options)
+    inStock = False
 
-#
-# NAVIGATE TO GOOGLE.COM...
-#
+    #  IN "HEADLESS MODE  "
+    #LOGGER.setLevel(logging.WARNING)
+    options = webdriver.ChromeOptions()
+    options.add_argument('--incognito')
+    options.add_argument('--headless')
+    options.add_argument("--log-level=3")
+    driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=options)
 
-driver.get("https://www.amazon.com/Crest-Enamel-Toothpaste-Advanced-Whitening/dp/B07K11XWXY/ref=sr_1_1_sspa?dchild=1&keywords=toothpaste&qid=1588633934&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUE2S0g1QThLNzM2SlgmZW5jcnlwdGVkSWQ9QTAwNDQzOTdXV1VTNDBMQ0FPMlMmZW5jcnlwdGVkQWRJZD1BMDcwNjI5M1dBUTcyOTFFSTdZJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==")
-breakpoint()
-print (driver.page_source)
-driver.quit()
-print(driver.title) #> Google
-driver.save_screenshot("search_page.png")
+    driver.get(product_url)
 
-search_input = driver.find_element_by_id("twotabsearchtextbox")
-search_input.send_keys("toothpaste")
-time.sleep(2)
+    try:
+        price = driver.find_element_by_id("priceblock_ourprice").text
+        if "$" in price:
+            inStock = True
+    except Exception as e:
+        pass
 
-search_button = driver.find_element_by_xpath('/html/body/div[1]/header/div/div[1]/div[3]/div/form/div[2]/div/input')
-search_button.click()
-time.sleep(2)
+    driver.quit()
 
-# first_result = driver.find_element_by_xpath('//*[@id="search"]/div[1]/div[2]/div/span[4]/div[2]/div[3]/div/span/div/div/div/div/div[4]/div[1]/div/a/span[1]/span[1]')
-# print(first_result.text)
+    return inStock
 
-breakpoint()
+def initSheet():
+    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    creds = ServiceAccountCredentials.from_json_keyfile_name("client_secret.json", scope)
+    client = gspread.authorize(creds)
+    sheet = client.open("Restock").sheet1
 
-first_result = driver.find_element_by_xpath('//*[@id="search"]/div[1]/div[2]/div/span[4]/div[1]/div[1]/div/span/div/div/div/div/div[2]/h2/a')
-asin = first_result.get_attribute("data-asin")
-url = "httpe://www.amazon.com/dp/" + asin
-driver.get(url)
-price = driver.find_element_by_id("priceblock_ourprice").text
-name = driver.find_element_by_id("productTitle").text
+    return sheet
 
-print(price)
-print(name)
-print(url)
+def addNewRow(row):
+    sheet.insert_row(row, 2)
 
 
+#error message printing function
+def print_input_err_message():
+    """
+        This function prints an error message and then exits. It occurs whenever there is input validation errors or HTTP request errors.
+
+        @param: none.
+
+    """
+
+    print("")
+    print("OOPS, the link you entered does not work; please input links in the following format: https://amazon...")
+    print("Please try run the program again. Thank you!")
+    print("")
+    exit()
+
+
+if __name__ == "__main__":
+
+    #import statements
+    from dotenv import load_dotenv
+    from sendgrid import SendGridAPIClient
+    from sendgrid.helpers.mail import Mail
+
+
+    load_dotenv()
+
+    #defining key variables
+    CHROMEDRIVER_PATH = "c:/Users/timpa/Documents/GitHub/restock/chromedriver.exe"
+
+    #starting a sheet
+    sheet = initSheet()
+
+    #PART 1: Program intro and user input collection
+    print("")
+    print("Welcome to Restock.io, a tool for you to see whether your favorite Amazon products , or perhaps those items that you really need now, are available and, if so, for what price\n")
+    print("Our mission is to remove all the effort and stress of having to regularly hunt through Amazon for your products!\n")
+    print("At a high level, what the application does is takes in the links of the Amazon products you want to keep a watch out for")
+    print("Check's for their prices and availability at regular intervals, and then maintains communication with you (via email) to update you on product availability and price\n")
+    print("In tough times like now, where product shortages are common, we hope to alievate some of that stress and automate the looking for you!\n")
+
+
+    #asking for user input
+    print("")
+    print("")
+    url = input("Please input the amazon URL for the product that you would which to keep tabs on: ")
+
+    #quick validation
+    if "amazon" in url:
+        print("Great, we're looking into it right now... \n")
+    else:
+        print_input_err_message()
+
+
+    url = "https://www.amazon.com/Nintendo-Switch-Neon-Blue-Joy%E2%80%91/dp/B07VGRJDFY/ref=sr_1_3?crid=IY3K5B823UOZ&dchild=1&keywords=nintendo+switch&qid=1588716182&sprefix=nintend%2Caps%2C159&sr=8-3"
+    print("Adding your request to our database...")
+    newRow = [email, url]
+
+    
+    addNewRow(newRow)
+
+
+    #print(isInStock(url, CHROMEDRIVER_PATH))
+    email = ""
+
+    if isInStock(url, CHROMEDRIVER_PATH):
+        print("Oh, your item is in stock. Maybe try a different link!")
+    else:
+        print("Looks like your item is indeed out of stock.")
+        print("If you would like us to send you an email when")
+        print("your item is back in stock, enter it below!")
+        email = input("-->")
+        
+        while ("@" not in email):
+            print("Whoops, please enter a valid email.")
+            email = input("-->")
+
+        print("Adding your request to our database...")
+        newRow = [email, url]
+        addNewRow(newRow)
+
+        print("Thanks for adding your item to Restock!\n")
+
+
+    #PART XXX: emailing the user about product info
+
+    #TO DO : CONNECT EMAIL HERE
 
 
 
-
-
-
-
-
-
-
-#def search_items(item):
-#
-#    urls = []
-#    prices = []
-#    names = []
-#    for item in items:
-#        print(f"Searching for {item}.")
-#        self.driver.get(self.amazon_url)
-#        search_input = self.driver.find_element_by_id("twotabsearchtextbox")
-#        search_input.send_keys(item)
-#        time.sleep(5)
-#        search_button = self.driver.find_element_by_xpath('/html/body/div[1]/header/div/div[1]/div[3]/div/form/div[2]/div/input')
-#        search_button.click()
-#        time.sleep(5)
-
-#
-# FIND AN ELEMENT TO INTERACT WITH...
-# a reference to the HTML element:
-# <input title="Search">
-
-#searchbox_xpath = '//input[@title="Search"]'
-#searchbox = driver.find_element_by_xpath(searchbox_xpath)
-#
-##
-## INTERACT WITH THE ELEMENT
-##
-#
-#search_term = "Prof Rossetti GitHub"
-#searchbox.send_keys(search_term)
-#
-#searchbox.send_keys(Keys.RETURN)
-#print(driver.title) #> 'Prof Rossetti GitHub - Google Search'
-#driver.save_screenshot("search_results.png")
-
-#
-# ALWAYS QUIT THE DRIVER
-#
-
-driver.quit()
-
+    #concluding statement to thank the client for using the service
+    print("")
+    print("")
+    print("Thank you for using Restock.io! We hope you got the information you were looking for \n")
+    print("We look forward to keeping you updated on the products that you care about!\n")
+    print("If you think there is a way we can improve our service, contact us at customerrelations@restock.io")
+    print("")
+    
+    print("Thanks for adding your item to Restock!\n")
