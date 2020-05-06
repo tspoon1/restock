@@ -51,6 +51,7 @@ def addNewRow(row):
         @param: given row data (e.g. email and link)
 
     """
+    sheet = initSheet()
     sheet.insert_row(row, 2)
 
 
@@ -111,7 +112,7 @@ if __name__ == "__main__":
     print("Adding your request to our database...")
     newRow = [email, url]
 
-    
+
     addNewRow(newRow)
 
 
@@ -125,7 +126,7 @@ if __name__ == "__main__":
         print("If you would like us to send you an email when")
         print("your item is back in stock, enter it below!")
         email = input("-->")
-        
+
         while ("@" not in email):
             print("Whoops, please enter a valid email.")
             email = input("-->")
@@ -150,5 +151,5 @@ if __name__ == "__main__":
     print("We look forward to keeping you updated on the products that you care about!\n")
     print("If you think there is a way we can improve our service, contact us at customerrelations@restock.io")
     print("")
-    
+
     print("Thanks for adding your item to Restock!\n")
