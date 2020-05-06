@@ -26,7 +26,7 @@ def isInStock(product_url):
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=options)
 
     driver.get(product_url)
-    print(driver.page_source())
+    print(driver.page_source
 
     try:
         price = driver.find_element_by_id("priceblock_ourprice").text
