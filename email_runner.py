@@ -109,4 +109,5 @@ if __name__ == "__main__":
         if isInStock(url):
             notifyUser(email, url)
             sheet.delete_rows(rowNumber)
-        rowNumber += 1
+        else:
+            rowNumber += 1

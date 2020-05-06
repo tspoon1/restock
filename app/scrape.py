@@ -8,8 +8,9 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 #import other key functions
-from app.email_service import send_email
+from email_service import send_email
 
+import os
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -35,7 +36,8 @@ def isInStock(product_url, chromeDriverPath):
     options.add_argument('--incognito')
     options.add_argument('--headless')
     options.add_argument("--log-level=3")
-    driver = webdriver.Chrome(chromeDriverPath, options=options)
+    options.add_argument("--disable-dev-shm-usage")
+    driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=options)
 
     driver.get(product_url)
 
@@ -80,7 +82,6 @@ def addNewRow(row):
     sheet = initSheet()
     sheet.insert_row(row, 2)
 
-
 #error message printing function
 def print_input_err_message():
     """
@@ -108,8 +109,6 @@ def is_valid(url):
         return True
     else:
         return False
-
-
 
 if __name__ == "__main__":
 
