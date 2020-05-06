@@ -7,19 +7,19 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from datetime import datetime
 
-load_dotenv()
-
-
-#get variables from .env
-SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
-MY_ADDRESS = os.environ.get("EMAIL")
-SUBJECT = 'Restock.io: Updates on the availability and price of your product(s)'
 
 def send_email(customer_name, customer_address, product, availability):
+
+    load_dotenv()
+    
+    #get variables from .env
+    SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
+    MY_ADDRESS = os.environ.get("EMAIL")
 
     now = datetime.now()
     date_and_time = now.strftime("%d-%m-%Y %I:%M %p")
     CUST_ADDRESS = customer_address
+    SUBJECT = 'Restock.io: Updates on the availability and price of your product(s)'
 
 
     client = SendGridAPIClient(SENDGRID_API_KEY)
