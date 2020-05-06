@@ -84,6 +84,7 @@ def addNewRow(row):
     """
     sheet = initSheet()
     sheet.insert_row(row, 2)
+    return sheet.row_values(2)
 
 #error message printing function
 def print_input_err_message():
