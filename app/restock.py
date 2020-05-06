@@ -86,7 +86,6 @@ def addNewRow(row):
     sheet.insert_row(row, 2)
     return sheet.row_values(2)
 
-#error message printing function
 def print_input_err_message():
     """
         This function prints an error message and then exits. It occurs whenever there is input validation errors.
