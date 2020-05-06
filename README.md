@@ -67,6 +67,33 @@ For information on how to obtain a Sendgrid API key and tempate (it's very easy 
 - https://github.com/prof-rossetti/intro-to-python/blob/master/notes/python/packages/sendgrid.md#email-templates
 - https://github.com/prof-rossetti/intro-to-python/blob/master/exercises/emails-with-templates/send_email.py
 
+## Deploying the local Flask version to online server (powered by Heroku)
+After demonstrating the ability to successfully run the web app locally, deploy the web service by uploading the source code onto a remote server:
+
+```sh
+git push heroku master
+```
+If you are unfamiliar with the code above, and/ or you have never used Heroku before, click the link below for a comprehensive guide (from Professor Rossetti) on Heroku, setting up an account, and getting it all running:
+https://github.com/prof-rossetti/intro-to-python/blob/master/exercises/web-service/deploying.md
+
+After entering the command line code above, you'll need to create a special file called the "Procfile" in the root directory. This file is key because it essentially coordiantes with the Heroku server on which command to invoke to run the app:
+
+```sh
+web: gunicorn "web_app:create_app()"
+```
+
+Save the "Procfile" and make a commit before re-attempting to deploy your app to the server.
+
+```sh
+git push heroku master
+```
+
+View the server logs and troubleshoot as necessary until you're able to see the application's home page in the browser.
+
+```sh
+heroku logs --tail
+```
+
 ## Usage:
 Run the recommendation script: <br />
 - python app/main_script.py  <br />
@@ -75,20 +102,31 @@ Run the recommendation script: <br />
 
 In terms of application usage, there are two ways in which this application can be used:
 - online web app version (powered through Heroku)
-- command line version (powered by Flask)
+- command line web app version (powered by Flask)
 
-### Web App Version
-Navigate to: 
-```sh
-INSERT LINK
-```
+### Online Version
+
+COMING SOON...
+
 Click through to where you can enter your details (Name) and then the link of the product you wish to track on Amazon.
 The program will come back with one of two respones: either the product is in stock and therefore the program will end there, or it is not in stock. If it is the latter, the application will request your email. If you wish to receive updates every once in a while, enter your email and the application will email you until the product becomes available, in which case you will then be removed from the email list.
 
-**Note that in this case you do not have to install, run, etc. according to all the instructions above
 
 ### Command line version
 Run the program given the instructions above and you will first see a welcoming message. Enter your name and then the link of the product you wish to track on Amazon. Just like above, the program will come back with one of two respones: either the product is in stock and therefore the program will end there, or it is not in stock. If it is the latter, the application will request your email. If you wish to receive updates every once in a while, enter your email and the application will email you until the product becomes available, in which case you will then be removed from the email list.
+
+#### Flask Instructions
+Depending on the way a Flask app is organized, the run command will differ, but based on the provided organizational structure (with the `create_app()` function in the "web_app/\_\_init__.py" file), the following command should run web application locally so you can view it in a browser at localhost:5000:
+
+```sh
+# Mac:
+FLASK_APP=web_app flask run
+
+# Windows:
+export FLASK_APP=web_app # first time, to set the env var
+flask run # subsequent times
+```
+Following this, proceed to visit localhost:5000 in the browser!
 
 ## Testing
 
