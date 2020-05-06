@@ -161,6 +161,8 @@ def send_email(customer_address, product_url, availability):
 
     <h4>Best, </h4>
     <h4>Team Restock </h4>
+
+    <img src="restock.io_logo.png">
     """
 
     message = Mail(from_email=MY_ADDRESS, to_emails=CUST_ADDRESS, subject=SUBJECT, html_content=html)
