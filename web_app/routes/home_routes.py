@@ -1,7 +1,7 @@
 # web_app/routes/home_routes.py
 
 from flask import Blueprint, render_template, flash, redirect, request
-from app.scrape import addNewRow, initSheet
+from app.restock import addNewRow, initSheet
 
 home_routes = Blueprint("home_routes", __name__)
 
