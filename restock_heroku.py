@@ -11,16 +11,19 @@ import os
 
 load_dotenv()
 
-def isInStock(product_url, chromeDriverPath):
+def isInStock(product_url):
 
     inStock = False
 
     #  IN "HEADLESS MODE  "
     options = webdriver.ChromeOptions()
+    options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     options.add_argument('--incognito')
     options.add_argument('--headless')
     options.add_argument("--log-level=3")
-    driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=options)
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=options)
 
     driver.get(product_url)
 
@@ -82,9 +85,6 @@ def notifyUser(email, url):
 
 if __name__ == "__main__":
 
-    CHROMEDRIVER_PATH = "c:/Users/timpa/Documents/GitHub/restock/chromedriver.exe"
-    #NEED TO FIGURE OUT WHAT THE PATH TO THE HEROKU DIRECTORY IS!
-
     sheet = initSheet()
     email = "temp@email.com"
 
@@ -93,7 +93,7 @@ if __name__ == "__main__":
     rowNumber = 2
 
     for email, url in zip(emailList, urlList):
-        if isInStock(url, CHROMEDRIVER_PATH):
+        if isInStock(url):
             notifyUser(email, url)
             sheet.delete_row(rowNumber)
         rowNumber += 1
