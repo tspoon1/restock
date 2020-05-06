@@ -1,3 +1,4 @@
+#test/test_restock.py
 from app.restock import is_valid, send_email, addNewRow, initSheet, isInStock
 
 def test_is_valid():

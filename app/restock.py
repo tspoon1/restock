@@ -1,4 +1,4 @@
-#restock.py
+#app/restock.py
 
 #importing key packages/ modules
 from selenium import webdriver
@@ -173,72 +173,3 @@ def send_email(customer_address, product_url, availability):
         if response.status_code == 202: return "sent"
     except Exception as e:
         print("OOPS", e)
-
-if __name__ == "__main__":
-
-    #starting a sheet
-    sheet = initSheet()
-
-    #PART 1: Program intro and user input collection
-    print("")
-    print("Welcome to Restock.io, a tool for you to see whether your favorite Amazon products , or perhaps those items that you really need now, are available and, if so, for what price\n")
-    print("Our mission is to remove all the effort and stress of having to regularly hunt through Amazon for your products!\n")
-    print("At a high level, what the application does is takes in the links of the Amazon products you want to keep a watch out for")
-    print("Check's for their prices and availability at regular intervals, and then maintains communication with you (via email) to update you on product availability and price\n")
-    print("In tough times like now, where product shortages are common, we hope to alievate some of that stress and automate the looking for you!\n")
-
-
-    #asking for user input
-    print("")
-    print("")
-    name = input("Please write your name: ")
-    url = input("Please input the amazon URL for the product that you would which to keep tabs on: ")
-
-    #run the function to check validity
-    validity = is_valid(url)
-    if validity == True:
-        print(f"{name}, Adding your request to our database...")
-    else:
-        print_input_err_message()
-
-
-    url = "https://www.amazon.com/Nintendo-Switch-Neon-Blue-Joy%E2%80%91/dp/B07VGRJDFY/ref=sr_1_3?crid=IY3K5B823UOZ&dchild=1&keywords=nintendo+switch&qid=1588716182&sprefix=nintend%2Caps%2C159&sr=8-3"
-    
-
-
-    #print(isInStock(url, CHROMEDRIVER_PATH))
-    email = ""
-
-    if isInStock(url, CHROMEDRIVER_PATH):
-        print("Oh, your item is in stock. Maybe try a different link!")
-    else:
-        print("Looks like your item is indeed out of stock.")
-        print("If you would like us to send you an email when")
-        print("your item is back in stock, enter it below!")
-        email = input("-->")
-
-        while ("@" not in email):
-            print("Whoops, please enter a valid email:")
-            email = input("-->")
-
-        print("Adding your request to our database...")
-        newRow = [email, url]
-        addNewRow(newRow)
-
-        print(f"Thanks for adding your item to Restock, {name}!\n")
-
-
-    #PART XXX: emailing the user about product info
-
-    #TO DO : CONNECT EMAIL HERE
-
-
-
-    #concluding statement to thank the client for using the service
-    print("")
-    print("")
-    print("Thank you for using Restock.io! We hope you got the information you were looking for \n")
-    print("We look forward to keeping you updated on the products that you care about!\n")
-    print("If you think there is a way we can improve our service, contact us at customerrelations@restock.io")
-    print("")
-
