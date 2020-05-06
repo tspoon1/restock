@@ -100,6 +100,9 @@ After doing all of the above, your front end should be able handle form inputs a
 pytest
 ```
 
+## Code Climate Software Check:
+TODO
+
 ## To Restock, or not to Restock
 Upon completion of everything above, you are good to go! Just make sure to keep an eye out for our v3.0 to release, where the google sheet will be automatically run-through and checked regularly by a herkou scheduled script. But for now, just type the following into your CLI a couple times a day to keep your own Restock users happy!
 ```
@@ -108,46 +111,3 @@ python app/email_runner.py
 
 ## Goodluck and thank you for using Restock.io!
 #### The Restock team <3
-
-
-## User Instructions:
-
-In terms of application usage, there are two ways in which this application can be used:
-- online web app version (powered through Heroku)
-- command line web app version (powered by Flask)
-
-### Online Version
-
-COMING SOON...
-
-Click through to where you can enter your details (Name) and then the link of the product you wish to track on Amazon.
-The program will come back with one of two respones: either the product is in stock and therefore the program will end there, or it is not in stock. If it is the latter, the application will request your email. If you wish to receive updates every once in a while, enter your email and the application will email you until the product becomes available, in which case you will then be removed from the email list.
-
-
-### Command line version
-Run the program given the instructions above and you will first see a welcoming message. Enter your name and then the link of the product you wish to track on Amazon. Just like above, the program will come back with one of two respones: either the product is in stock and therefore the program will end there, or it is not in stock. If it is the latter, the application will request your email. If you wish to receive updates every once in a while, enter your email and the application will email you until the product becomes available, in which case you will then be removed from the email list.
-
-#### Flask Instructions
-Depending on the way a Flask app is organized, the run command will differ, but based on the provided organizational structure (with the `create_app()` function in the "web_app/\_\_init__.py" file), the following command should run web application locally so you can view it in a browser at localhost:5000:
-
-```sh
-# Mac:
-FLASK_APP=web_app flask run
-
-# Windows:
-export FLASK_APP=web_app # first time, to set the env var
-flask run # subsequent times
-```
-Following this, proceed to visit localhost:5000 in the browser!
-
-## Testing
-
-Run the test(s):
-
-```sh
-pytest
-```
-
-
-## Code Climate Software Check:
-TODO
