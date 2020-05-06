@@ -106,8 +106,12 @@ if __name__ == "__main__":
     emailList = sheet.col_values(1)[1:]
     urlList = sheet.col_values(2)[1:]
     rowNumber = 2
+    print(emailList)
+    print(urlList)
 
     for email, url in zip(emailList, urlList):
+        print(email, url)
+        print(isInStock(url))
         if isInStock(url):
             print("we are supposed to be emailing rn")
             notifyUser(email, url)
