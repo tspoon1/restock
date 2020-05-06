@@ -10,6 +10,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 #import other key functions
 from app.email_service import send_email
 
+from dotenv import load_dotenv
+load_dotenv()
 
 def isInStock(product_url, chromeDriverPath):
 
@@ -106,13 +108,6 @@ def is_valid(url):
 
 if __name__ == "__main__":
 
-    #import statements
-    from dotenv import load_dotenv
-    from sendgrid import SendGridAPIClient
-    from sendgrid.helpers.mail import Mail
-
-
-    load_dotenv()
 
     #defining key variables
     CHROMEDRIVER_PATH = "c:/Users/timpa/Documents/GitHub/restock/chromedriver.exe"
