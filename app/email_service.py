@@ -16,9 +16,10 @@ def send_email(customer_address, product_url, availability):
         inputs below and uses a custom HTML template to formulate the email. Note that API KEY and the sending email address are 
         kept undisclosed in the .env file
 
-        @param: customer_name (a string that contains the customer's name), customer_address (a string that contains the customer's emai)
-                product (the link of the product that the customer gave, in string format), availability, a string that informs the customer
-                of if the product is available or not
+        @param: customer_name (a string that contains the customer's name)
+        @param: customer_address (a string that contains the customer's email)
+        @param: product_url (the link of the product that the customer gave, in string format)
+        @param: availability (a string that informs the customer of if the product is available or not)
 
     """
     load_dotenv()

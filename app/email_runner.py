@@ -10,45 +10,9 @@ from sendgrid.helpers.mail import Mail
 import os
 import datetime
 
+from scrape import isInStock, initSheet
+
 load_dotenv()
-
-def isInStock(product_url):
-
-    inStock = False
-
-    #  IN "HEADLESS MODE  "
-    options = webdriver.ChromeOptions()
-    CHROMEDRIVER_PATH = "c:/Users/timpa/Documents/GitHub/restock/chromedriver.exe"
-    #options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    options.add_argument('--incognito')
-    options.add_argument('--headless')
-    options.add_argument("--log-level=3")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--no-sandbox")
-    driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=options)
-
-    driver.get(product_url)
-    #print(driver.page_source)
-
-    try:
-        price = driver.find_element_by_id("priceblock_ourprice").text
-        if "$" in price:
-            inStock = True
-    except Exception as e:
-        pass
-
-    driver.quit()
-
-    return inStock
-
-def initSheet():
-
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("client_secret.json", scope)
-    client = gspread.authorize(creds)
-    sheet = client.open("Restock").sheet1
-
-    return sheet
 
 def notifyUser(email, url):
 

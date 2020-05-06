@@ -14,7 +14,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-def isInStock(product_url, chromeDriverPath):
+def isInStock(product_url):
 
     """
         isInStock utilizes selenium to grab an amazon.com url specified by the user and
@@ -31,15 +31,18 @@ def isInStock(product_url, chromeDriverPath):
     inStock = False
 
     #  IN "HEADLESS MODE  "
-    #LOGGER.setLevel(logging.WARNING)
+    CHROMEDRIVER_PATH = "c:/Users/timpa/Documents/GitHub/restock/chromedriver.exe"
     options = webdriver.ChromeOptions()
+    #options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     options.add_argument('--incognito')
     options.add_argument('--headless')
     options.add_argument("--log-level=3")
     options.add_argument("--disable-dev-shm-usage")
-    driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=options)
+    options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=options)
 
     driver.get(product_url)
+    #print(driver.page_source)
 
     try:
         #scrape the HTML code and check for the price block. If there is a $ in the block, a price is given and the product 
@@ -111,10 +114,6 @@ def is_valid(url):
         return False
 
 if __name__ == "__main__":
-
-
-    #defining key variables
-    CHROMEDRIVER_PATH = os.environ.get("CHROMEDRIVER_PATH")
 
     #starting a sheet
     sheet = initSheet()
