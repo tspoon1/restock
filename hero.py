@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+import os
 
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -12,10 +13,13 @@ def isInStock(product_url, chromeDriverPath):
     #  IN "HEADLESS MODE  "
     #LOGGER.setLevel(logging.WARNING)
     options = webdriver.ChromeOptions()
+    options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     options.add_argument('--incognito')
     options.add_argument('--headless')
     options.add_argument("--log-level=3")
-    driver = webdriver.Chrome(CHROMEDRIVER_PATH, options=options)
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--no-sandbox")
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=options)
 
     driver.get(product_url)
 
