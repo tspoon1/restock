@@ -40,7 +40,7 @@ conda activate restock-env
 <br />
 
 ## Set Up
-n addition to what was said above, make sure to configure your env to fit the required variables: <br />
+In addition to what was said above, make sure to configure your env to fit the required variables: <br />
 - Sendgrid API KEY <br />
 - Sendgrid API TEMPLATE <br />
 - An email address to use for sending and receiving emailed alerts <br />
@@ -73,7 +73,22 @@ Run the recommendation script: <br />
 
 ## User Instructions:
 
-TODO
+In terms of application usage, there are two ways in which this application can be used:
+- online web app version (powered through Heroku)
+- command line version (powered by Flask)
+
+### Web App Version
+Navigate to: 
+```sh
+INSERT LINK
+```
+Click through to where you can enter your details (Name) and then the link of the product you wish to track on Amazon.
+The program will come back with one of two respones: either the product is in stock and therefore the program will end there, or it is not in stock. If it is the latter, the application will request your email. If you wish to receive updates every once in a while, enter your email and the application will email you until the product becomes available, in which case you will then be removed from the email list.
+
+**Note that in this case you do not have to install, run, etc. according to all the instructions above
+
+### Command line version
+Run the program given the instructions above and you will first see a welcoming message. Enter your name and then the link of the product you wish to track on Amazon. Just like above, the program will come back with one of two respones: either the product is in stock and therefore the program will end there, or it is not in stock. If it is the latter, the application will request your email. If you wish to receive updates every once in a while, enter your email and the application will email you until the product becomes available, in which case you will then be removed from the email list.
 
 ## Testing
 
