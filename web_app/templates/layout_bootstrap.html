@@ -2,7 +2,7 @@
 <html>
   <head>
     {% block title %}
-      <title>My Starter Web App | Helps students learn how to use the Flask Python package.</title>
+      <title>Amazon Restock</title>
     {% endblock %}
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -29,12 +29,11 @@
     <!-- see: https://getbootstrap.com/docs/4.0/components/navbar/ -->
     {% set nav_links = [
       ('/about', 'about', 'About'),
-      ('/weather/form', 'weather_form', 'Weather'),
-      ('/users/new', 'new_user', 'Sign Up')
+      ('/', 'home', 'Home')
     ] -%}
     {% set active_page = active_page|default('index') -%}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a class="navbar-brand" href="/">My Web App</a>
+      <a class="navbar-brand" href="/">Amazon Price and Restock Update App</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -62,13 +61,6 @@
         {% endblock %}
       </div>
 
-      <!-- FOOTER -->
-      <div id="footer">
-        <hr>
-        &copy; 2019 Prof. MJ Rossetti  |
-        <a href="https://github.com/prof-rossetti/">source</a>
-      </div>
-    </div>
 
     <!-- JAVASCRIPT SECTION -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
