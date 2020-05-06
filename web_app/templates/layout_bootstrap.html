@@ -28,8 +28,8 @@
     <!-- see: https://jinja.palletsprojects.com/en/2.11.x/tricks/ -->
     <!-- see: https://getbootstrap.com/docs/4.0/components/navbar/ -->
     {% set nav_links = [
-      ('/about', 'about', 'About'),
-      ('/', 'home', 'Home')
+      ('/about', 'About', 'About'),
+      ('/', 'Home', 'Home')
     ] -%}
     {% set active_page = active_page|default('index') -%}
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
