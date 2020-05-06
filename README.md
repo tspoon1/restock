@@ -8,12 +8,16 @@ An application that aims to help users stay up to date on the prices/ availabili
 - Pip
 
 ## Required Python Packages & Modules:
-- datetime <br />
-- dotenv <br />
-- os <br />
-- sendgrid <br />
+- dotenv 
+- os 
+- datetime
+- sendgrid
 - flask
 - gunicorn
+- gspread
+- oauth2client
+- bs4
+- selenium
 - pytest
 
 ## Installation:
@@ -31,7 +35,7 @@ pip install -r requirements.txt
 ## Setting up the Environment:
 ```sh
 conda create -n restock-env python=3.7 # (first time only) <br />
-conda activate restock-env <br />
+conda activate restock-env 
 ```
 <br />
 

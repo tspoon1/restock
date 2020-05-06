@@ -5,6 +5,7 @@
 import requests
 import os
 import csv 
+from datetime import datetime
 
 
 #error message printing function
@@ -31,6 +32,9 @@ if __name__ == "__main__":
     from sendgrid.helpers.mail import Mail
 
     load_dotenv()
+
+    #defining key variables
+    now = datetime.now()
 
     #PART 1: Program intro and user input collection
     print("")
@@ -94,8 +98,10 @@ if __name__ == "__main__":
     message.template_id = SENDGRID_TEMPLATE_ID
 
     message.dynamic_template_data = {
-        #TBD
-        }# or construct this dictionary dynamically based on the results of some other process :-D
+        "name": customer_name
+        "human_friendly_timestamp": now.strftime("%d-%m-%Y %I:%M %p"),
+        "products": products_list
+        }
 
     try:
         response = client.send(message)
