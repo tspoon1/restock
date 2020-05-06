@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <p>Welcome To Our App! We hope we can help during these challenging times. Enter your name, email, and an item's link on Amazon's website and we will send you regular updates! </p>
+    <p>Welcome To Restock.io! We hope we can help during these challenging times. Enter your name, email, and an item's link on Amazon's website and we will send you regular updates! </p>
     <form action="/submit" method="post">
         <label>Name:</label>
         <input type="text" name="uName"></input>
@@ -14,8 +14,9 @@
         <label>Link:</label>
         <input type="text" name="link"></input>
         <br>
-        <button>Submit</button>
+        <input type="submit" onclick="return confirm('Are you sure?')" />
 
     </form>
+
 
 {% endblock %}
