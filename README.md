@@ -71,8 +71,7 @@ For information on how to obtain a Sendgrid API key and tempate (it's very easy 
 If you are unfamiliar with or you have never used Heroku before, click the link below for a comprehensive guide (from Professor Rossetti) on Heroku, setting up an account, and getting it all running:
 https://github.com/prof-rossetti/intro-to-python/blob/master/exercises/web-service/deploying.md
 
-### Some Key Highlights from the Guide (Professor Rossetti's words)
-If you haven't yet done so, [install the Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install), and make sure you can login and list your applications.
+If you haven't yet done so, [install the Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install), and make sure you can login as well as list your applications.
 
 ```sh
 heroku login # just a one-time thing when you use heroku for the first time
@@ -80,9 +79,7 @@ heroku login # just a one-time thing when you use heroku for the first time
 heroku apps # at this time, results might be empty-ish
 ```
 
-Before we copy the source code to the remote server, we need to configure the server's environment in a similar way we configured our local environment.
-
-Instead of using a ".env" file, we will directly configure the server's environment variables by either clicking "Reveal Config Vars" from the "Settings" tab in your application's Heroku dashboard
+Before you deploy to the server, you need to configure the server's environment: instead of using a ".env" file, we will directly configure the server's environment variables by clicking "Reveal Config Vars" from the "Settings" tab in your application's Heroku dashboard
 
 ### Deploying to Server
 
