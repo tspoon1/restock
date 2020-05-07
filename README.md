@@ -84,10 +84,7 @@ Before we copy the source code to the remote server, we need to configure the se
 
 Instead of using a ".env" file, we will directly configure the server's environment variables by either clicking "Reveal Config Vars" from the "Settings" tab in your application's Heroku dashboard
 
-
-
-
-
+## Back to - Deploying the local Flask version to online server (powered by Heroku)
 
 
 After creating a heroku app and configuring your env-variables whether through a CLI or the heroku website as outlined above, you'll need to utilize the special file called the "Procfile" in the root directory. This file is key because it essentially coordiantes with the Heroku server on which command to invoke to run the app.
