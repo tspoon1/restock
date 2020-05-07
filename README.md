@@ -71,7 +71,7 @@ For information on how to obtain a Sendgrid API key and tempate (it's very easy 
 If you are unfamiliar with or you have never used Heroku before, click the link below for a comprehensive guide (from Professor Rossetti) on Heroku, setting up an account, and getting it all running:
 https://github.com/prof-rossetti/intro-to-python/blob/master/exercises/web-service/deploying.md
 
-###Some Key Highlights from the Guide (Professor Rossetti's words)
+### Some Key Highlights from the Guide (Professor Rossetti's words)
 If you haven't yet done so, [install the Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install), and make sure you can login and list your applications.
 
 ```sh
