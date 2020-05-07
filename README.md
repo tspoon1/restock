@@ -86,6 +86,10 @@ Instead of using a ".env" file, we will directly configure the server's environm
 
 
 
+
+
+
+
 After creating a heroku app and configuring your env-variables whether through a CLI or the heroku website as outlined above, you'll need to utilize the special file called the "Procfile" in the root directory. This file is key because it essentially coordiantes with the Heroku server on which command to invoke to run the app.
 
 Make a commit to the heroku app and utilize the already existing Procfile to launch the application.
