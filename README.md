@@ -79,7 +79,7 @@ heroku login # just a one-time thing when you use heroku for the first time
 heroku apps # at this time, results might be empty-ish
 ```
 
-Before you deploy to the server, you need to configure the server's environment: instead of using a ".env" file, we will directly configure the server's environment variables by clicking "Reveal Config Vars" from the "Settings" tab in your application's Heroku dashboard
+Before you deploy to the server, you need to configure the server's environment: instead of using a ".env" file, we will directly configure the server's environment variables by clicking "Reveal Config Vars" from the "Settings" tab in your application's Heroku dashboard.
 
 ### Deploying to Server
 
